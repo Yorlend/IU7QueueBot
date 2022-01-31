@@ -37,6 +37,7 @@ public class IU7QueueBot extends LongPollBot
 
     public static void main( String[] args ) throws VkApiException
     {
-        new IU7QueueBot().startPolling();
+        QueueDBHandler.connect();
+        // new IU7QueueBot().startPolling();
     }
 }
