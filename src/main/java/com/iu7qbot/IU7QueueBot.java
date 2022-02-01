@@ -1,5 +1,7 @@
 package com.iu7qbot;
 
+import com.iu7qbot.db.QueueDBHandler;
+
 import api.longpoll.bots.LongPollBot;
 import api.longpoll.bots.exceptions.VkApiException;
 import api.longpoll.bots.model.events.messages.MessageNew;
@@ -37,7 +39,6 @@ public class IU7QueueBot extends LongPollBot
 
     public static void main( String[] args ) throws VkApiException
     {
-        QueueDBHandler.connect();
         // new IU7QueueBot().startPolling();
     }
 }
