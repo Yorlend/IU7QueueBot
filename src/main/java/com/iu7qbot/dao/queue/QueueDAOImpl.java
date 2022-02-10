@@ -17,7 +17,7 @@ public class QueueDAOImpl implements QueueDAO {
         List<Queue> res = new ArrayList<>();
 
         Statement statement = QueueDBHandler.getConnection().createStatement();
-        ResultSet rs = statement.executeQuery("select * from students order by id");
+        ResultSet rs = statement.executeQuery("select * from queue order by id");
 
         while (rs.next()) {
             String task = rs.getString("task");
@@ -34,7 +34,7 @@ public class QueueDAOImpl implements QueueDAO {
     @Override
     public void insertStudent(Queue student) throws SQLException {
         PreparedStatement prep = QueueDBHandler.getConnection()
-                .prepareStatement("insert into students (task, surname, name) values ( ?, ?, ? )");
+                .prepareStatement("insert into queue (task, surname, name) values ( ?, ?, ? )");
         
         prep.setString(1, student.getTask());
         prep.setString(2, student.getSurname());
@@ -49,7 +49,7 @@ public class QueueDAOImpl implements QueueDAO {
 
         Statement statement = QueueDBHandler.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(String
-                .format("select * from students where task = '%s' order by id", task));
+                .format("select * from queue where task = '%s' order by id", task));
 
         while (rs.next()) {
             String surname = rs.getString("surname");
