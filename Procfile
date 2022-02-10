@@ -1,1 +1,1 @@
-worker: java -jar target/queuebot-1.0-SNAPSHOT.jar
+worker: java -jar target/queuebot-1.0-SNAPSHOT-jar-with-dependencies.jar
