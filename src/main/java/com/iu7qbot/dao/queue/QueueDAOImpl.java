@@ -17,7 +17,7 @@ public class QueueDAOImpl implements QueueDAO {
         List<Queue> res = new ArrayList<>();
 
         Statement statement = QueueDBHandler.getConnection().createStatement();
-        ResultSet rs = statement.executeQuery("select * from queue order by id");
+        ResultSet rs = statement.executeQuery("select * from queue order by submitted");
 
         while (rs.next()) {
             String task = rs.getString("task");
@@ -49,7 +49,7 @@ public class QueueDAOImpl implements QueueDAO {
 
         Statement statement = QueueDBHandler.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(String
-                .format("select * from queue where task = '%s' order by id", task));
+                .format("select * from queue where task = '%s' order by submitted", task));
 
         while (rs.next()) {
             String surname = rs.getString("surname");

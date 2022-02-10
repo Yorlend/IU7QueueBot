@@ -1,3 +1,1 @@
-drop table schedule;
-drop table students;
-drop table queues;
+drop table queue schedule;
