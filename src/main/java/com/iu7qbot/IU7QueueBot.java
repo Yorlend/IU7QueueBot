@@ -8,8 +8,7 @@ import api.longpoll.bots.model.events.messages.MessageNew;
 import api.longpoll.bots.model.objects.basic.Message;
 
 
-public class IU7QueueBot extends LongPollBot
-{
+public class IU7QueueBot extends LongPollBot {
 
     @Override
     public void onMessageNew(MessageNew messageNew) {
@@ -74,7 +73,14 @@ public class IU7QueueBot extends LongPollBot
         }
     }
 
-    public static void main(String[] args) throws VkApiException {
-        new IU7QueueBot().startPolling();
+    public static void main(String[] args) {
+        while (true) {
+            try {
+                new IU7QueueBot().startPolling();
+            } catch (VkApiException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 }

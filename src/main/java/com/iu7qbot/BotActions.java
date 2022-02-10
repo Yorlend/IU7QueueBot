@@ -55,6 +55,8 @@ public class BotActions {
 
             return "Успешно удалён.";
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
             return errorMessage;
         }
     }
@@ -65,6 +67,7 @@ public class BotActions {
 
             return "Успешно добавлен.";
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             return duplicate;
         }
     }
@@ -72,7 +75,6 @@ public class BotActions {
     private static String customShow(String type, SqlCheckedFunction<String, List<Queue>> func) {
         try {
             var students = func.apply(type);
-
             var sb = new StringBuilder();
 
             int i = 1;
@@ -82,6 +84,7 @@ public class BotActions {
 
             return sb.toString();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             return errorMessage;
         }
     }
