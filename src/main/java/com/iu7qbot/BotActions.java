@@ -49,8 +49,8 @@ public class BotActions {
     }
 
     public static String popQueue(String task, String surname, String name) {
-        Queue student = new Queue(task, surname, name);
         try {
+            Queue student = new Queue(task, surname, name);
             queueDAO.removeStudent(student);
 
             return "Успешно удалён.";
