@@ -73,4 +73,8 @@ public class IU7QueueBot extends LongPollBot
             return func.apply(args[1]);
         }
     }
+
+    public static void main(String[] args) throws VkApiException {
+        new IU7QueueBot().startPolling();
+    }
 }
