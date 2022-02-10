@@ -68,6 +68,7 @@ public class BotActions {
             return "Успешно добавлен.";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             return duplicate;
         }
     }
@@ -85,6 +86,7 @@ public class BotActions {
             return sb.toString();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             return errorMessage;
         }
     }

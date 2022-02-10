@@ -20,7 +20,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 
         Statement statement = QueueDBHandler.getConnection().createStatement();
         ResultSet rs = statement
-            .executeQuery("select queue.* from schedule s join queue q on s.task = q.task and " +
+            .executeQuery("select q.* from schedule s join queue q on s.task = q.task and " +
             String.format("s.surname = q.surname where s.task = '%s' order by q.submitted", task));
 
         while (rs.next()) {

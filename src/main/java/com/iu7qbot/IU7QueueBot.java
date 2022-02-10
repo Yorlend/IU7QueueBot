@@ -77,7 +77,7 @@ public class IU7QueueBot extends LongPollBot {
         while (true) {
             try {
                 new IU7QueueBot().startPolling();
-            } catch (VkApiException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
             }
