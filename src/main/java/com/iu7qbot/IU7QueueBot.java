@@ -77,6 +77,10 @@ public class IU7QueueBot extends LongPollBot {
 
     public static void main(String[] args) {
         CleanScheduler.run();
-        new IU7QueueBot().startPolling();
+        try {
+            new IU7QueueBot().startPolling();
+        } catch (VkApiException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -2,8 +2,6 @@ package com.iu7qbot;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import com.iu7qbot.dao.queue.Queue;
 import com.iu7qbot.dao.queue.QueueDAO;

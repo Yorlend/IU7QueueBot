@@ -1,9 +1,7 @@
 package com.iu7qbot.dao.queue;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.ZonedDateTime;
-import java.util.TimeZone;
 import java.time.ZoneId;
 
 public class Queue {
