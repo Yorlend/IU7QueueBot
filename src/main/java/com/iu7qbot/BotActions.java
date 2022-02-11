@@ -78,6 +78,10 @@ public class BotActions {
             var students = func.apply(type);
             var sb = new StringBuilder();
 
+            if (students.isEmpty()) {
+                return "Очередь пуста.";
+            }
+
             int i = 1;
             for (var student : students) {
                 sb.append(String.format("%d: %s\n", i++, student));

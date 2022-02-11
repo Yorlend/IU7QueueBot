@@ -47,6 +47,8 @@ public class IU7QueueBot extends LongPollBot {
             }
         } catch (VkApiException e) {
             response = "Хто ты?!";
+        } catch (Exception e) {
+            response = "Хто я?";
         }
 
         vk.messages.send()
@@ -75,13 +77,6 @@ public class IU7QueueBot extends LongPollBot {
 
     public static void main(String[] args) {
         CleanScheduler.run();
-        while (true) {
-            try {
-                new IU7QueueBot().startPolling();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
-        }
+        new IU7QueueBot().startPolling();
     }
 }
