@@ -2,6 +2,9 @@ package com.iu7qbot.dao.queue;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.TimeZone;
+import java.time.ZoneId;
 
 public class Queue {
     private String task;
@@ -13,7 +16,7 @@ public class Queue {
         this.task = task;
         this.surname = surname;
         this.name = name;
-        this.submitted = Timestamp.from(Instant.now());
+        this.submitted = Timestamp.from(ZonedDateTime.now(ZoneId.of("Europe/Moscow")).toInstant());
     }
 
     public Queue(String task, String surname, String name, Timestamp submitted) {

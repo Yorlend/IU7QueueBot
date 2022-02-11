@@ -34,11 +34,12 @@ public class QueueDAOImpl implements QueueDAO {
     @Override
     public void insertStudent(Queue student) throws SQLException {
         PreparedStatement prep = QueueDBHandler.getConnection()
-                .prepareStatement("insert into queue (task, surname, name) values ( ?, ?, ? )");
+                .prepareStatement("insert into queue (task, surname, name, submitted) values (?, ?, ?, ?)");
         
         prep.setString(1, student.getTask());
         prep.setString(2, student.getSurname());
         prep.setString(3, student.getName());
+        prep.setTimestamp(4, student.getSubmitted());;
 
         prep.executeUpdate();
     }

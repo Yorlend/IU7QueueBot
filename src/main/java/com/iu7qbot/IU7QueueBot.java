@@ -74,6 +74,7 @@ public class IU7QueueBot extends LongPollBot {
     }
 
     public static void main(String[] args) {
+        CleanScheduler.run();
         while (true) {
             try {
                 new IU7QueueBot().startPolling();
