@@ -25,8 +25,8 @@ public class IU7QueueBot extends LongPollBot {
                 .getResponseObject()
                 .get(0);
         
-            String surname = sender.getFirstName();
-            String name = sender.getLastName();
+            String surname = sender.getLastName();
+            String name = sender.getFirstName();
 
             if (textMessage.startsWith("/")) {
                 response = BotActions.generateHelp();
