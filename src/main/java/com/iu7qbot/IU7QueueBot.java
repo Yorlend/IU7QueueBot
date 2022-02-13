@@ -28,6 +28,10 @@ public class IU7QueueBot extends LongPollBot {
             String surname = sender.getFirstName();
             String name = sender.getLastName();
 
+            if (textMessage.startsWith("/")) {
+                response = BotActions.generateHelp();
+            }
+
             if (args.length > 1) {
                 String command = args[0];
                 if (command.equals("/info")) {
@@ -44,10 +48,6 @@ public class IU7QueueBot extends LongPollBot {
                     response = typeChecker(args, t ->
                         BotActions.popQueue(t, surname, name));
                 }
-            }
-
-            else if (textMessage.startsWith("/")) {
-                response = BotActions.generateHelp();
             }
     
         } catch (VkApiException e) {
