@@ -43,6 +43,15 @@ public class BotActions {
 
     public static String enrollSchedule(String task, String surname, String name) {
         Queue student = new Queue(task, surname, name);
+
+        try {
+            if (!queueDAO.exists(student)) {
+                queueDAO.insertStudent(student);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return customEnroll(student, scheduleDAO::insertSchedule);
     }
 
@@ -63,11 +72,8 @@ public class BotActions {
 
     private static String customEnroll(Queue student, SqlCheckedConsumer<Queue> consumer) {
         try {
-            if (!queueDAO.exists(student)) {
-                queueDAO.insertStudent(student);
-            }
-
             consumer.accept(student);
+            
             return "Успешно добавлен.";
 
         } catch (SQLException e) {
