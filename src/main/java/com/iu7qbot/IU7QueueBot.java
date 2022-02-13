@@ -43,10 +43,13 @@ public class IU7QueueBot extends LongPollBot {
                 } else if (command.equals("/def")) {
                     response = typeChecker(args, t ->
                         BotActions.popQueue(t, surname, name));
-                } else if (command.startsWith("/")) {
-                    response = BotActions.generateHelp();
                 }
             }
+
+            else if (textMessage.startsWith("/")) {
+                response = BotActions.generateHelp();
+            }
+    
         } catch (VkApiException e) {
             response = "Хто ты?!";
         } catch (Exception e) {
