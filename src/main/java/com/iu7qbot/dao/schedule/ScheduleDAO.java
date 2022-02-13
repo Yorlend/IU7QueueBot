@@ -12,7 +12,7 @@ public interface ScheduleDAO {
     void resetSchedule()
         throws SQLException;
 
-    void removeStudent()
+    void removeStudent(Queue student)
         throws SQLException;
 
     void insertSchedule(Queue student)
