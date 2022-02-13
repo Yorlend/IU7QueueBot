@@ -52,4 +52,16 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 
         prep.executeUpdate();
     }
+
+    @Override
+    public void removeStudent(Queue student) throws SQLException {
+        
+        PreparedStatement prep = QueueDBHandler.getConnection()
+                .prepareStatement("delete from schedule where task = ? and surname = ?");
+
+        prep.setString(1, student.getTask());
+        prep.setString(2, student.getSurname());
+
+        prep.executeUpdate();
+    }
 }

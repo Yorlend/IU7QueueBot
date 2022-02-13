@@ -16,7 +16,7 @@ public class IU7QueueBot extends LongPollBot {
         String textMessage = message.getText();
 
         String[] args = textMessage.split("\\s+");
-        String response = BotActions.generateHelp();
+        String response = "";
 
         try {
             var sender = vk.users.get()
@@ -43,6 +43,8 @@ public class IU7QueueBot extends LongPollBot {
                 } else if (command.equals("/def")) {
                     response = typeChecker(args, t ->
                         BotActions.popQueue(t, surname, name));
+                } else if (command.startsWith("/")) {
+                    response = BotActions.generateHelp();
                 }
             }
         } catch (VkApiException e) {
