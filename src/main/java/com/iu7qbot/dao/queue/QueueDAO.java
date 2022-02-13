@@ -14,6 +14,9 @@ public interface QueueDAO {
     public void insertStudent(Queue student)
         throws SQLException;
 
+    boolean exists(Queue student)
+        throws SQLException;
+
     public void removeStudent(Queue student)
         throws SQLException;
 }

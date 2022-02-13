@@ -73,4 +73,22 @@ public class QueueDAOImpl implements QueueDAO {
 
         prep.executeUpdate();
     }
+
+    @Override
+    public boolean exists(Queue student) throws SQLException {
+        
+        PreparedStatement prep = QueueDBHandler.getConnection()
+                .prepareStatement("select * from queue where task = ? and surname = ?");
+
+        prep.setString(1, student.getTask());
+        prep.setString(2, student.getSurname());
+
+        ResultSet rs = prep.executeQuery();
+
+        if (rs.next()) {
+            return true;
+        }
+        
+        return false;
+    }
 }

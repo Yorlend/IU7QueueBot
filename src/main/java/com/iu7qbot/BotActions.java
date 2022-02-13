@@ -63,9 +63,13 @@ public class BotActions {
 
     private static String customEnroll(Queue student, SqlCheckedConsumer<Queue> consumer) {
         try {
-            consumer.accept(student);
+            if (!queueDAO.exists(student)) {
+                queueDAO.insertStudent(student);
+            }
 
+            consumer.accept(student);
             return "Успешно добавлен.";
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
