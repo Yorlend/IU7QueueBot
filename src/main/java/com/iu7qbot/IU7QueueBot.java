@@ -76,10 +76,10 @@ public class IU7QueueBot extends LongPollBot {
     }
 
     private String typeChecker(String[] args, Function<String, String> func) {
-        if (args.length < 2 || !args[1].matches("CG|OOP|MZYAP")) {
-            return "Выбери очередь (CG/OOP/MZYAP)";
+        if (args.length < 2 || !args[1].toLowerCase().matches("cg|oop|asm|ca|evm")) {
+            return "Выбери очередь (cg/oop/asm/ca/evm)";
         } else {
-            return func.apply(args[1]);
+            return func.apply(args[1].toUpperCase());
         }
     }
 

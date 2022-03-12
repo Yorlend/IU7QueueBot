@@ -21,11 +21,11 @@ public class BotActions {
     public static String generateHelp() {
         return "Список команд:\n" +
             "1. /help -> выводит информацию о командах.\n" +
-            "2. /info [CG/OOP/MZYAP] -> выводит очередь.\n" + 
-            "3. /today [CG/OOP/MZYAP] -> очередь на сегодня.\n" +
-            "4. /queue [CG/OOP/MZYAP] -> запись в очередь.\n" +
-            "5. /done [CG/OOP/MZYAP] -> готов сдавать лабу.\n" +
-            "6. /def [CG/OOP/MZYAP] -> защитился.";
+            "2. /info [cg|oop|asm|ca|evm] -> выводит очередь.\n" + 
+            "3. /today [cg|oop|asm|ca|evm] -> очередь на сегодня.\n" +
+            "4. /queue [cg|oop|asm|ca|evm] -> запись в очередь.\n" +
+            "5. /done [cg|oop|asm|ca|evm] -> готов сдавать лабу.\n" +
+            "6. /def [cg|oop|asm|ca|evm] -> защитился.";
     }
 
     public static String showQueue(String type) {
