@@ -2,6 +2,9 @@ package com.iu7qbot;
 
 import java.util.function.Function;
 
+import com.iu7qbot.schedulers.CleanScheduler;
+import com.iu7qbot.schedulers.PollScheduler;
+
 import api.longpoll.bots.LongPollBot;
 import api.longpoll.bots.exceptions.VkApiException;
 import api.longpoll.bots.model.events.messages.MessageNew;
@@ -82,10 +85,9 @@ public class IU7QueueBot extends LongPollBot {
 
     public static void main(String[] args) {
         CleanScheduler.run();
-        try {
-            new IU7QueueBot().startPolling();
-        } catch (VkApiException e) {
-            e.printStackTrace();
-        }
+        
+        PollScheduler poll = new PollScheduler(new IU7QueueBot());
+
+        poll.run();
     }
 }

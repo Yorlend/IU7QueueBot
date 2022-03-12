@@ -1,4 +1,4 @@
-package com.iu7qbot;
+package com.iu7qbot.schedulers;
 
 import java.sql.SQLException;
 import java.time.LocalTime;
