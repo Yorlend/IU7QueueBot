@@ -1,9 +1,6 @@
 package com.iu7qbot;
 
-import java.util.function.Function;
-
 import com.iu7qbot.schedulers.CleanScheduler;
-import com.iu7qbot.schedulers.PollScheduler;
 
 import api.longpoll.bots.LongPollBot;
 import api.longpoll.bots.exceptions.VkApiException;
@@ -18,7 +15,6 @@ public class IU7QueueBot extends LongPollBot {
         Message message = messageNew.getMessage();
         String textMessage = message.getText();
 
-        String[] args = textMessage.split("\\s+");
         String response = "";
 
         try {
@@ -31,27 +27,7 @@ public class IU7QueueBot extends LongPollBot {
             String surname = sender.getLastName();
             String name = sender.getFirstName();
 
-            if (textMessage.startsWith("/")) {
-                response = BotActions.generateHelp();
-            }
-
-            if (args.length > 1) {
-                String command = args[0];
-                if (command.equals("/info")) {
-                    response = typeChecker(args, BotActions::showQueue);
-                } else if (command.equals("/today")) {
-                    response = typeChecker(args, BotActions::showSchedule);
-                } else if (command.equals("/queue")) {
-                    response = typeChecker(args, t ->
-                        BotActions.enrollQueue(t, surname, name));
-                } else if (command.equals("/done")) {
-                    response = typeChecker(args, t ->
-                        BotActions.enrollSchedule(t, surname, name));
-                } else if (command.equals("/def")) {
-                    response = typeChecker(args, t ->
-                        BotActions.popQueue(t, surname, name));
-                }
-            }
+            response = BotController.handleMessage(textMessage, name, surname);
     
         } catch (VkApiException e) {
             response = "Хто ты?!";
@@ -75,17 +51,27 @@ public class IU7QueueBot extends LongPollBot {
         return Integer.parseInt(System.getenv("GID"));
     }
 
-    private String typeChecker(String[] args, Function<String, String> func) {
-        if (args.length < 2 || !args[1].toLowerCase().matches("cg|oop|asm|ca|evm")) {
-            return "Выбери очередь (cg/oop/asm/ca/evm)";
-        } else {
-            return func.apply(args[1].toUpperCase());
-        }
-    }
-
     public static void main(String[] args) {
         CleanScheduler.run();
-        
-        PollScheduler.run();
+
+        while (true) {
+            try {
+                new IU7QueueBot().startPolling();
+            } catch (VkApiException e) {
+                e.printStackTrace();
+                if (!e.getMessage().contains("{\"failed\":2}")) {
+                    System.out.println();
+                    break;
+                }
+            }
+
+            // sleep for 10 secs
+            try {
+                Thread.sleep(10_000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                break;
+            }
+        }
     }
 }
