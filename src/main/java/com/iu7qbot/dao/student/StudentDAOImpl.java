@@ -12,7 +12,7 @@ public class StudentDAOImpl implements StudentDAO {
     public Student getStudent(long id) throws SQLException {
 
         PreparedStatement prep = QueueDBHandler.getConnection()
-            .prepareStatement("select (name, surname) from students where id = ?");
+            .prepareStatement("select name, surname from students where id = ?");
 
         prep.setLong(1, id);
         ResultSet rs = prep.executeQuery();
