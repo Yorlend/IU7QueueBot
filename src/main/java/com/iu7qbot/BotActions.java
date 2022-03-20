@@ -8,12 +8,16 @@ import com.iu7qbot.dao.queue.QueueDAO;
 import com.iu7qbot.dao.queue.QueueDAOImpl;
 import com.iu7qbot.dao.schedule.ScheduleDAO;
 import com.iu7qbot.dao.schedule.ScheduleDAOImpl;
+import com.iu7qbot.dao.student.Student;
+import com.iu7qbot.dao.student.StudentDAO;
+import com.iu7qbot.dao.student.StudentDAOImpl;
 import com.iu7qbot.func.SqlCheckedConsumer;
 import com.iu7qbot.func.SqlCheckedFunction;
 
 public class BotActions {
     private final static QueueDAO queueDAO = new QueueDAOImpl();
     private final static ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+    private final static StudentDAO studentDAO = new StudentDAOImpl();
 
     private final static String errorMessage = "Я поломався. Тыкни Клима, чтобы починил( Ему понравится (нет).";
     private final static String duplicate = "Вы уже в этой очереди.";
@@ -25,7 +29,21 @@ public class BotActions {
             "3. /today cg|oop|asm|ca|evm -> очередь на сегодня.\n" +
             "4. /queue cg|oop|asm|ca|evm -> запись в очередь.\n" +
             "5. /done cg|oop|asm|ca|evm -> готов сдавать лабу.\n" +
-            "6. /def cg|oop|asm|ca|evm -> защитился.";
+            "6. /def cg|oop|asm|ca|evm -> защитился.\n" +
+            "!!! Перед использованием необходима регистрация:\n" +
+            "!!! /reg <фамилия> <имя>\n" +
+            "ВАЖНО: чтобы место в старой очереди сохранилось, регистрируйтесь под фамилиями в ВК";
+    }
+
+    public static Student getStudent(long id) {
+        
+        try {
+            return studentDAO.getStudent(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public static String showQueue(String type) {

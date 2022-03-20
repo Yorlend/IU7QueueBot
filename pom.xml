@@ -7,12 +7,9 @@
   <groupId>com.iu7qbot</groupId>
   <artifactId>queuebot</artifactId>
   <version>1.0-SNAPSHOT</version>
-
-  <name>queuebot</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
-
+  
   <properties>
+    <java.version>1.17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
@@ -20,9 +17,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.github.yvasyliev</groupId>
-      <artifactId>java-vk-bots-longpoll-api</artifactId>
-      <version>3.0.1</version>
+      <groupId>com.github.pengrad</groupId>
+      <artifactId>java-telegram-bot-api</artifactId>
+      <version>5.7.0</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

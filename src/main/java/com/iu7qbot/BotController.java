@@ -3,7 +3,7 @@ package com.iu7qbot;
 import java.util.function.Function;
 
 public class BotController {
-    public static String handleMessage(String message, String senderFirstName, String senderLastName) {
+    public static String handleMessage(String message, long id) {
         String[] args = message.split("\\s+");
         String response = "";
 
@@ -11,8 +11,14 @@ public class BotController {
             response = BotActions.generateHelp();
         }
 
-        if (args.length > 1) {
+        var student = BotActions.getStudent(id);
+
+        if (args.length > 1 && student != null) {
             String command = args[0];
+
+            String senderLastName = student.getSurname();
+            String senderFirstName = student.getName();
+
             if (command.equals("/info")) {
                 response = typeChecker(args, BotActions::showQueue);
             } else if (command.equals("/today")) {
