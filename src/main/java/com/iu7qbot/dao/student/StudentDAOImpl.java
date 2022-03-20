@@ -14,7 +14,7 @@ public class StudentDAOImpl implements StudentDAO {
         PreparedStatement prep = QueueDBHandler.getConnection()
             .prepareStatement("select (name, surname) from students where id = ?");
 
-        prep.setLong(0, id);
+        prep.setLong(1, id);
         ResultSet rs = prep.executeQuery();
 
         if (rs.next()) {
@@ -30,9 +30,9 @@ public class StudentDAOImpl implements StudentDAO {
         PreparedStatement prep = QueueDBHandler.getConnection()
             .prepareStatement("insert into students (id, surname, name) values ( ?, ?, ? )");
 
-        prep.setLong(0, student.getId());
-        prep.setString(1, student.getSurname());
-        prep.setString(2, student.getName());
+        prep.setLong(1, student.getId());
+        prep.setString(2, student.getSurname());
+        prep.setString(3, student.getName());
 
         prep.executeUpdate();
     }
