@@ -46,6 +46,18 @@ public class BotActions {
         return null;
     }
 
+    public static String register(long id, String surname, String name) {
+
+        try {
+            studentDAO.insertStudent(new Student(id, surname, name));
+
+            return "Успешно зарегистрирован.";
+        } catch (SQLException e) {
+            
+            return "Вы уже зарегистрированы.";
+        }
+    }
+
     public static String showQueue(String type) {
         return customShow(type, queueDAO::findStudents);
     }

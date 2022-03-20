@@ -33,6 +33,14 @@ public class BotController {
                 response = typeChecker(args, t ->
                     BotActions.popQueue(t, senderLastName, senderFirstName));
             }
+        } 
+
+        if (args[0].equals("/reg")) {
+            if (args.length != 3) {
+                response = "Использование: /reg <Фамилия> <Имя>";
+            } else {
+                response = BotActions.register(id, args[1], args[2]);
+            }
         }
 
         return response;
