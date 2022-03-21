@@ -16,27 +16,32 @@ public class IU7QueueBot {
         bot.setUpdatesListener(updates -> {
 
             for (var update : updates) {
-                String command = update.message().text();
-                long id = update.message().from().id();
-
-                String response = BotController.handleMessage(command, id);
-
-                SendMessage msg = new SendMessage(update.message().chat().id(), response);
-
-                bot.execute(msg, new Callback<SendMessage, SendResponse>() {
-
-                    @Override
-                    public void onResponse(SendMessage request, SendResponse response) {
+                try {
+                    String command = update.message().text();
+                    long id = update.message().from().id();
+    
+                    String response = BotController.handleMessage(command, id);
+    
+                    SendMessage msg = new SendMessage(update.message().chat().id(), response);
+    
+                    bot.execute(msg, new Callback<SendMessage, SendResponse>() {
+    
+                        @Override
+                        public void onResponse(SendMessage request, SendResponse response) {
+                            
+                        }
+    
+                        @Override
+                        public void onFailure(SendMessage request, IOException e) {
+                            
+                            e.printStackTrace();
+                        }
                         
-                    }
+                    });
+                } catch (Exception e) {
 
-                    @Override
-                    public void onFailure(SendMessage request, IOException e) {
-                        
-                        e.printStackTrace();
-                    }
-                    
-                });
+                    e.printStackTrace();
+                }
             }
 
             return UpdatesListener.CONFIRMED_UPDATES_ALL;
