@@ -11,6 +11,8 @@ import com.pengrad.telegrambot.response.SendResponse;
 public class IU7QueueBot {
     
     public static void main(String[] args) {
+        CleanScheduler.run();
+        
         TelegramBot bot = new TelegramBot(System.getenv("TGTOKEN"));
 
         bot.setUpdatesListener(updates -> {
