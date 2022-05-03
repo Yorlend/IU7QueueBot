@@ -6,28 +6,22 @@ import java.time.ZoneId;
 
 public class Queue {
     private String task;
-    private String surname;
-    private String name;
+    private long id;
     private Timestamp submitted;
     
-    public Queue(String task, String surname, String name) {
+    public Queue(String task, long id) {
         this.task = task;
-        this.surname = surname;
-        this.name = name;
+        this.id = id;
         this.submitted = Timestamp.from(ZonedDateTime.now(ZoneId.of("Europe/Moscow")).toInstant());
     }
 
-    public Queue(String task, String surname, String name, Timestamp submitted) {
-        this(task, surname, name);
+    public Queue(String task, long id, Timestamp submitted) {
+        this(task, id);
         this.submitted = submitted;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getName() {
-        return name;
+    public long getId() {
+        return id;
     }
 
     public String getTask() {
@@ -40,6 +34,6 @@ public class Queue {
 
     @Override
     public String toString() {
-        return String.format("%s %s", surname, name);
+        return String.format("%s - %d", task, id);
     }
 }

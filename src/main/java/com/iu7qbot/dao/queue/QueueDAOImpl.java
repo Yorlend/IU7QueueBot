@@ -21,25 +21,28 @@ public class QueueDAOImpl implements QueueDAO {
 
         while (rs.next()) {
             String task = rs.getString("task");
-            String surname = rs.getString("surname");
-            String name = rs.getString("name");
+            long id = rs.getLong("id");
             Timestamp submitted = rs.getTimestamp("submitted");
 
-            res.add(new Queue(task, surname, name, submitted));
+            res.add(new Queue(task, id, submitted));
         }
 
         return res;
     }
 
     @Override
+    public List<Queue> findStudents(int fullGroup) throws SQLException {
+        return new ArrayList<Queue>();
+    }
+
+    @Override
     public void insertStudent(Queue student) throws SQLException {
         PreparedStatement prep = QueueDBHandler.getConnection()
-                .prepareStatement("insert into queue (task, surname, name, submitted) values (?, ?, ?, ?)");
+                .prepareStatement("insert into queue (task, id, submitted) values (?, ?, ?)");
         
         prep.setString(1, student.getTask());
-        prep.setString(2, student.getSurname());
-        prep.setString(3, student.getName());
-        prep.setTimestamp(4, student.getSubmitted());;
+        prep.setLong(2, student.getId());
+        prep.setTimestamp(3, student.getSubmitted());;
 
         prep.executeUpdate();
     }
@@ -53,23 +56,27 @@ public class QueueDAOImpl implements QueueDAO {
                 .format("select * from queue where task = '%s' order by submitted", task));
 
         while (rs.next()) {
-            String surname = rs.getString("surname");
-            String name = rs.getString("name");
+            long id = rs.getLong("id");
             Timestamp submitted = rs.getTimestamp("submitted");
 
-            res.add(new Queue(task, surname, name, submitted));
+            res.add(new Queue(task, id, submitted));
         }
 
         return res;
     }
 
     @Override
+    public List<Queue> findStudents(String task, int fullGroup) throws SQLException {
+        return new ArrayList<Queue>();
+    }
+
+    @Override
     public void removeStudent(Queue student) throws SQLException {
         PreparedStatement prep = QueueDBHandler.getConnection()
-                .prepareStatement("delete from queue where task = ? and surname = ?");
+                .prepareStatement("delete from queue where task = ? and id = ?");
 
         prep.setString(1, student.getTask());
-        prep.setString(2, student.getSurname());
+        prep.setLong(2, student.getId());
 
         prep.executeUpdate();
     }
@@ -78,10 +85,10 @@ public class QueueDAOImpl implements QueueDAO {
     public boolean exists(Queue student) throws SQLException {
         
         PreparedStatement prep = QueueDBHandler.getConnection()
-                .prepareStatement("select * from queue where task = ? and surname = ?");
+                .prepareStatement("select * from queue where task = ? and id = ?");
 
         prep.setString(1, student.getTask());
-        prep.setString(2, student.getSurname());
+        prep.setLong(2, student.getId());
 
         ResultSet rs = prep.executeQuery();
 

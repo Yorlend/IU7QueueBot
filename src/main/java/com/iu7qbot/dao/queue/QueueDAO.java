@@ -8,7 +8,13 @@ public interface QueueDAO {
     public List<Queue> findStudents()
         throws SQLException;
 
+    public List<Queue> findStudents(int fullGroup)
+        throws SQLException;
+
     public List<Queue> findStudents(String task)
+        throws SQLException;
+
+    public List<Queue> findStudents(String task, int fullGroup)
         throws SQLException;
         
     public void insertStudent(Queue student)
